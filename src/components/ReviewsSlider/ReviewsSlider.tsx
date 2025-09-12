@@ -43,7 +43,6 @@ const ReviewsSlider: React.FC = () => {
               </div>
               <div className={styles['reviews-slider__rating']}>{'★'.repeat(review.rating)}</div>
               <p className={styles['reviews-slider__text']}>{review.text}</p>
-              <span className={styles['reviews-slider__date']}>{review.date}</span>
             </div>
           </SwiperSlide>
         ))}

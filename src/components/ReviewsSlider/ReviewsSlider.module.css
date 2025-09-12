@@ -106,18 +106,9 @@ body {
 .reviews-slider__text {
   font-size: 1.1em;
   color: var(--text-color-medium);
-  line-height: 1.8; /* Увеличил межстрочный интервал для лучшей читаемости */
+  line-height: 1.8;
   flex-grow: 1;
-  text-align: justify; /* Выравнивание по ширине */
-}
-
-.reviews-slider__date {
-  font-size: 0.9em; /* Немного увеличил */
-  color: var(--text-color-light);
-  text-align: right;
-  margin-top: auto;
-  padding-top: 15px; /* Отступ сверху */
-  border-top: 1px dashed #e0e0e0; /* Пунктирная разделительная линия */
+  text-align: left;
 }
 
 /* Стили для кнопок навигации */
@@ -177,14 +168,14 @@ body {
 }
 
 .swiper-pagination-bullet {
-  background-color: #b0b0b0; /* Чуть темнее серый */
+  background-color: #b0b0b0;
   opacity: 0.6;
-  width: 14px; /* Еще больше размер */
+  width: 14px;
   height: 14px;
-  margin: 0 8px; /* Увеличил отступ */
+  margin: 0 8px;
   transition: background-color var(--transition-speed), transform var(--transition-speed),
     opacity var(--transition-speed);
-  border: 1px solid #d0d0d0; /* Легкая граница для точек */
+  border: 1px solid #d0d0d0;
 }
 
 .swiper-pagination-bullet:hover {
