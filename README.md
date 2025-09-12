@@ -22,7 +22,6 @@ import ReviewsSlider from './components/ReviewsSlider/ReviewsSlider';
 function App() {
   return (
     <div>
-      <h2>Відгуки клієнтів</h2>
       <ReviewsSlider />
     </div>
   );
