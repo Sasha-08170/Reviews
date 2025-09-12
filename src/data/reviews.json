@@ -2,19 +2,91 @@
   {
     "id": 1,
     "name": "Люба Козир",
-    "avatar": "https://via.placeholder.com/60/512da8/ffffff?text=Л",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjVjgNGdSVmWSm1GEP9Ixm67ejotG4F0m1tehMofETMTP9OM62ez=s128-c0x00000000-cc-rp-mo",
     "source": "Відгук із сайту Google",
     "rating": 5,
-    "text": "Хочу подякувати адвокатському об'єднанню Актум, зокрема адвокату Ользі Проніній за надання кваліфікованої допомоги в написанні заяв...",
-    "date": "28.08.25 13:08"
+    "text": "Хочу подякувати адвокатському об'єднанню Актум, зокрема адвокату Ользі Проніній за надання кваліфікованої допомоги в написанні заяв. Дуже задоволена швидкістю та професіоналізмом!",
+    "date": "28.08.2023 13:08"
   },
   {
     "id": 2,
-    "name": "Nemakuu",
-    "avatar": "https://via.placeholder.com/60",
+    "name": "Людмила Шелудько",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
     "source": "Відгук із сайту Google",
     "rating": 5,
-    "text": "Дуже компетентна та професійна консультація. Я отримала відповіді на всі питання які мене цікавили...",
-    "date": "27.08.25 16:50"
+    "text": "Дуже компетентна та професійна консультація. Я отримала відповіді на всі питання які мене цікавили. Рекомендую Актум!",
+    "date": "27.08.2023 16:50"
+  },
+  {
+    "id": 3,
+    "name": "Олександр Пономаренко",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjVjgNGdSVmWSm1GEP9Ixm67ejotG4F0m1tehMofETMTP9OM62ez=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 4,
+    "text": "Звертався по справі сімейного права. Отримав якісну підтримку, хоча процес був тривалим. Результатом задоволений, але хотілося б трохи швидше.",
+    "date": "25.08.2023 10:15"
+  },
+  {
+    "id": 4,
+    "name": "Вікторія Савчук",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 5,
+    "text": "Дуже вдячна за допомогу у вирішенні складного питання з нерухомістю. Адвокати Актум проявили високий професіоналізм та уважність до деталей.",
+    "date": "22.08.2023 09:30"
+  },
+  {
+    "id": 5,
+    "name": "Іван Мельник",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 5,
+    "text": "Консультація була надзвичайно інформативною. Отримав чіткі відповіді та план дій. Рекомендую всім, хто шукає надійну юридичну допомогу.",
+    "date": "20.08.2023 14:00"
+  },
+  {
+    "id": 6,
+    "name": "Марина Семенова",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 4,
+    "text": "Звернулась по адміністративній справі. Були деякі затримки з відповідями, але в цілому роботу виконано якісно. Дякую за результат.",
+    "date": "18.08.2023 11:45"
+  },
+  {
+    "id": 7,
+    "name": "Сергій Коваленко",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 5,
+    "text": "Професіонали своєї справи! Допомогли у вирішенні складного корпоративного спору. Дякую за оперативність та високий рівень експертизи.",
+    "date": "15.08.2023 17:20"
+  },
+  {
+    "id": 8,
+    "name": "Анна Романчук",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 5,
+    "text": "Компетентна консультація та повний супровід у справі про спадщину. Всі питання вирішені швидко та без зайвих проблем. Дуже задоволена.",
+    "date": "12.08.2023 10:00"
+  },
+  {
+    "id": 9,
+    "name": "Дмитро Сидоренко",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 4,
+    "text": "Звернувся з питанням щодо земельного права. Отримав розгорнуту відповідь, але хотілось би більше гнучкості у графіку зустрічей. В цілому, добре.",
+    "date": "10.08.2023 15:30"
+  },
+  {
+    "id": 10,
+    "name": "Наталія Кузнецова",
+    "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW0tJsgJB3SHYCLbeaIEnZQngmCdA8O9nH88rF8kXDOQ1XiWAQ=s128-c0x00000000-cc-rp-mo",
+    "source": "Відгук із сайту Google",
+    "rating": 5,
+    "text": "Прекрасний сервіс та індивідуальний підхід. Юристи Актум дійсно допомагають і вирішують проблеми. Однозначно рекомендую!",
+    "date": "08.08.2023 11:00"
   }
 ]

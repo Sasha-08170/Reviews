@@ -1,72 +1,123 @@
+:root {
+  --primary-color: #007bff; /* Основной акцентный цвет */
+  --secondary-color: #fdd835; /* Цвет для звезд рейтинга */
+  --text-color-dark: #333;
+  --text-color-medium: #555;
+  --text-color-light: #777;
+  --bg-color-light: #f4f7fa; /* Общий светлый фон, чуть темнее для контраста */
+  --bg-color-card: #fff; /* Фон карточек */
+  --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --border-radius-base: 15px;
+  --transition-speed: 0.3s ease;
+  --button-size: 55px; /* Размер кнопок для удобства */
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Более современный шрифт */
+  line-height: 1.6;
+  color: var(--text-color-dark);
+  background-color: #ffffff;
+}
+
 .reviews-slider {
-  max-width: 1200px; /* Ограничьте ширину, чтобы кнопки не улетали */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
-  position: relative; /* Важно для позиционирования кнопок */
-  text-align: center; /* Для центрирования заголовка и пагинации */
+  padding: 80px 40px;
+  position: relative;
+  text-align: center;
+  background-color: var(--bg-color-light); /* Легкий фон для секции */
+  border-radius: var(--border-radius-base);
+  overflow: hidden; /* Важно для обрезки теней кнопок, если они выходят за контейнер */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); /* Легкая тень для всего слайдера */
 }
 
 .reviews-slider h2 {
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  color: #333;
+  font-size: 3em; /* Еще немного увеличил размер */
+  margin-bottom: 50px; /* Увеличил отступ */
+  color: var(--text-color-dark);
+  font-weight: 700;
+  letter-spacing: -1px; /* Сделал еще плотнее */
+  text-transform: uppercase; /* Добавил заглавные буквы */
 }
 
 .reviews-slider__card {
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-color-card);
+  border-radius: var(--border-radius-base);
+  padding: 35px;
+  box-shadow: var(--shadow-medium);
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  height: 100%; /* Чтобы карточки были одинаковой высоты */
+  gap: 20px;
+  height: 300px;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed),
+    border-color var(--transition-speed);
+  border: 1px solid #e0e0e0; /* Легкая граница для лучшей видимости на светлом фоне */
+}
+
+.reviews-slider__card:hover {
+  transform: translateY(-8px); /* Легкий подъем при наведении */
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15); /* Усиленная тень при наведении */
+  border-color: var(--primary-color); /* Акцентная граница при наведении */
 }
 
 .reviews-slider__header {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+  margin-bottom: 5px;
 }
 
 .reviews-slider__avatar {
-  width: 60px;
-  height: 60px;
+  height: 65px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #eee;
+  border: 4px solid var(--primary-color);
+  flex-shrink: 0;
+}
+
+.reviews-slider__info {
+  display: flex;
+  flex-direction: column;
 }
 
 .reviews-slider__name {
-  font-size: 1.2em;
-  font-weight: 600;
-  color: #333;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--text-color-dark);
   margin: 0;
+  line-height: 1.2;
 }
 
 .reviews-slider__source {
-  font-size: 0.9em;
-  color: #777;
+  font-size: 1em;
+  color: var(--text-color-light);
+  margin-top: 4px;
 }
 
 .reviews-slider__rating {
-  color: #fdd835; /* Цвет звезд */
-  font-size: 1.2em;
+  color: var(--secondary-color);
+  font-size: 1.4em;
+  letter-spacing: 2px; /* Разрядил звезды еще больше */
+  margin-top: 10px; /* Отступ от источника */
 }
 
 .reviews-slider__text {
-  font-size: 1em;
-  color: #555;
-  line-height: 1.6;
-  flex-grow: 1; /* Чтобы текст занимал все доступное пространство */
+  font-size: 1.1em;
+  color: var(--text-color-medium);
+  line-height: 1.8; /* Увеличил межстрочный интервал для лучшей читаемости */
+  flex-grow: 1;
+  text-align: justify; /* Выравнивание по ширине */
 }
 
 .reviews-slider__date {
-  font-size: 0.8em;
-  color: #999;
+  font-size: 0.9em; /* Немного увеличил */
+  color: var(--text-color-light);
   text-align: right;
-  margin-top: auto; /* Прижимает дату к низу карточки */
+  margin-top: auto;
+  padding-top: 15px; /* Отступ сверху */
+  border-top: 1px dashed #e0e0e0; /* Пунктирная разделительная линия */
 }
 
 /* Стили для кнопок навигации */
@@ -75,52 +126,149 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px; /* Ширина кнопки */
-  height: 50px; /* Высота кнопки */
-  background-color: #f0f4f8; /* Легкий серый фон */
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: var(--bg-color-card);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  color: #777; /* Цвет иконки */
+  box-shadow: var(--shadow-light);
+  color: var(--primary-color);
+  border: 1px solid #d0d0d0;
+  opacity: 0.9;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background-color: #e2eaf2;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background-color: var(--primary-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  transform: translateY(-50%) scale(1.1); /* Более выраженное увеличение */
+  opacity: 1;
+}
+
+/* Изменение SVG иконок Swiper, чтобы они соответствовали цвету */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
 .swiper-button-prev {
-  left: -25px; /* Смещение влево от контейнера */
+  left: 0px;
 }
 
 .swiper-button-next {
-  right: -25px; /* Смещение вправо от контейнера */
+  right: 0px;
 }
 
 /* Стилизация Swiper Pagination */
+.swiper-pagination {
+  margin-top: 60px; /* Увеличил отступ сверху от карточек */
+  position: relative !important;
+  bottom: 0px !important;
+  display: flex; /* Для лучшего контроля над расположением точек */
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px; /* Дополнительный отступ снизу */
+}
+
 .swiper-pagination-bullet {
-  background-color: #ccc; /* Цвет неактивных точек */
-  opacity: 1;
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
+  background-color: #b0b0b0; /* Чуть темнее серый */
+  opacity: 0.6;
+  width: 14px; /* Еще больше размер */
+  height: 14px;
+  margin: 0 8px; /* Увеличил отступ */
+  transition: background-color var(--transition-speed), transform var(--transition-speed),
+    opacity var(--transition-speed);
+  border: 1px solid #d0d0d0; /* Легкая граница для точек */
+}
+
+.swiper-pagination-bullet:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #007bff; /* Цвет активной точки */
+  background-color: var(--primary-color);
+  opacity: 1;
+  transform: scale(1.3); /* Активная точка чуть больше */
+  border-color: var(--primary-color);
 }
 
-/* Переопределение стандартных стилей Swiper для пагинации, если они конфликтуют */
-:global(.swiper-pagination-bullets) {
-    bottom: 0px !important; /* Убедитесь, что пагинация находится снизу */
-}
-:global(.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet) {
-    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 8px);
+/* Медиа-запросы для адаптивности */
+@media (max-width: 1280px) {
+  /* Кнопки начинают приближаться к краям, когда контейнер становится меньше 1200px */
+  .swiper-button-prev {
+    left: 20px; /* Прижимаем к краям контейнера, когда max-width срабатывает */
+  }
+  .swiper-button-next {
+    right: 20px; /* Прижимаем к краям контейнера, когда max-width срабатывает */
+  }
 }
 
+@media (max-width: 992px) {
+  .reviews-slider {
+    padding: 60px 20px;
+  }
+  .reviews-slider h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 50px;
+    height: 50px;
+  }
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 1.6em;
+  }
+  .swiper-pagination {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-slider {
+    padding: 50px 15px;
+  }
+  .reviews-slider h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+  .reviews-slider__card {
+    padding: 30px;
+    gap: 15px;
+  }
+  .reviews-slider__avatar {
+    width: 55px;
+    height: 55px;
+    border-width: 3px;
+  }
+  .reviews-slider__name {
+    font-size: 1.2em;
+  }
+  .reviews-slider__source {
+    font-size: 0.9em;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none; /* Скрываем кнопки на мобильных, полагаясь на свайп */
+  }
+  .reviews-slider {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0; /* Убираем радиус по углам, чтобы сливалось с фоном */
+  }
+  .swiper-pagination {
+    margin-top: 40px;
+    padding-bottom: 15px;
+  }
+  .swiper-pagination-bullet {
+    width: 12px;
+  }
+}

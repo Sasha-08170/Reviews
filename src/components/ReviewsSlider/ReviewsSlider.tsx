@@ -12,7 +12,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 const ReviewsSlider: React.FC = () => {
   return (
     <div className={styles['reviews-slider']}>
-      <h2>Reviews Slider</h2> {/* Добавил заголовок, как на фото */}
+      <h2>Reviews Slider</h2>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={30}
