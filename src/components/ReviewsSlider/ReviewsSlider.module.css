@@ -1,0 +1,126 @@
+.reviews-slider {
+  max-width: 1200px; /* Ограничьте ширину, чтобы кнопки не улетали */
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative; /* Важно для позиционирования кнопок */
+  text-align: center; /* Для центрирования заголовка и пагинации */
+}
+
+.reviews-slider h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.reviews-slider__card {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%; /* Чтобы карточки были одинаковой высоты */
+}
+
+.reviews-slider__header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.reviews-slider__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.reviews-slider__name {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.reviews-slider__source {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.reviews-slider__rating {
+  color: #fdd835; /* Цвет звезд */
+  font-size: 1.2em;
+}
+
+.reviews-slider__text {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.6;
+  flex-grow: 1; /* Чтобы текст занимал все доступное пространство */
+}
+
+.reviews-slider__date {
+  font-size: 0.8em;
+  color: #999;
+  text-align: right;
+  margin-top: auto; /* Прижимает дату к низу карточки */
+}
+
+/* Стили для кнопок навигации */
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px; /* Ширина кнопки */
+  height: 50px; /* Высота кнопки */
+  background-color: #f0f4f8; /* Легкий серый фон */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #777; /* Цвет иконки */
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #e2eaf2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.swiper-button-prev {
+  left: -25px; /* Смещение влево от контейнера */
+}
+
+.swiper-button-next {
+  right: -25px; /* Смещение вправо от контейнера */
+}
+
+/* Стилизация Swiper Pagination */
+.swiper-pagination-bullet {
+  background-color: #ccc; /* Цвет неактивных точек */
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #007bff; /* Цвет активной точки */
+}
+
+/* Переопределение стандартных стилей Swiper для пагинации, если они конфликтуют */
+:global(.swiper-pagination-bullets) {
+    bottom: 0px !important; /* Убедитесь, что пагинация находится снизу */
+}
+:global(.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet) {
+    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 8px);
+}
+
