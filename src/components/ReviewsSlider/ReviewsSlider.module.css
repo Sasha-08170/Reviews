@@ -7,7 +7,7 @@
 
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: 200px;
   padding: 60px 20px;
   position: relative;
   background: var(--bg-color-light, #f9f9f9);
