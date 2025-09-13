@@ -1,15 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import axios, { type AxiosResponse } from 'axios';
 
 // Стили Swiper
 import 'swiper/css';
 
 // Стили компонента
 import styles from './ReviewsSlider.module.css';
-
-// Данные
-import reviews from '../../data/reviews.json';
 
 // Иконки
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,8 +16,57 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 // Типизация Swiper
 import type { Swiper as SwiperType } from 'swiper';
 
+// Типизация отзыва
+type Review = {
+  id: number;
+  avatar: string;
+  name: string;
+  source: string;
+  rating: number;
+  text: string;
+};
+
 const ReviewsSlider: React.FC = () => {
   const swiperRef = useRef<SwiperType | null>(null);
+
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Загружаем JSON из src/data
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        // динамический импорт JSON
+        const module = await import('../../data/reviews.json');
+
+        // axios-запрос с кастомным adapter
+        const response: AxiosResponse<Review[]> = await axios<Review[]>({
+          method: 'get',
+          url: '', // не используется
+          adapter: async () => {
+            return {
+              data: module.default as Review[],
+              status: 200,
+              statusText: 'OK',
+              headers: {},
+              config: {},
+              request: {},
+            };
+          },
+        });
+
+        setReviews(response.data);
+      } catch (err) {
+        console.error('Ошибка загрузки отзывов:', err);
+        setError('Не удалось загрузить отзывы.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   // Анимация клика
   const handleClickAnimation = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -27,6 +74,14 @@ const ReviewsSlider: React.FC = () => {
     btn.classList.add(styles.activeClick);
     setTimeout(() => btn.classList.remove(styles.activeClick), 300);
   };
+
+  if (loading) {
+    return <div className={styles['reviews-slider']}>Загрузка отзывов...</div>;
+  }
+
+  if (error) {
+    return <div className={styles['reviews-slider']}>{error}</div>;
+  }
 
   return (
     <div className={styles['reviews-slider']}>
