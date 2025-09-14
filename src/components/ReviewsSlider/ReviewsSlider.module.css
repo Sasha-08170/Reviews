@@ -1,94 +1,96 @@
-/* === Корень компонента + переменные для быстрых правок === */
+/* === Корень компонента === */
 .reviews-slider {
-  --card-height: 320px; /* высота карточки на десктопе */
-  --card-padding: 35px;
-  --avatar-size: 55px;
-  --btn-size: 46px;
+  --avatar-size: clamp(40px, 6vw, 55px);
+  --btn-size: clamp(34px, 5vw, 46px);
+  --card-padding: clamp(16px, 4vw, 35px);
 
   width: 100%;
   max-width: 1200px;
-  margin-left: 200px;
-  padding: 60px 20px;
+  margin: 0 auto;
+  padding: clamp(30px, 5vw, 60px) 16px;
   position: relative;
   background: var(--bg-color-light, #f9f9f9);
-  border-radius: var(--border-radius-base);
+  border-radius: var(--border-radius-base, 16px);
   box-sizing: border-box;
 }
 
 .reviews-slider h2 {
   text-align: center;
-  font-size: 2rem;
-  color: var(--text-color-dark);
-  margin-bottom: 40px;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--text-color-dark, #222);
+  margin-bottom: clamp(20px, 4vw, 40px);
   font-weight: 600;
 }
 
-/* === ВАЖНО: делать слайды flex-контейнерами, чтобы карточки растягивались по высоте === */
-/* Применяется к классам Swiper (глобально) */
+/* === Слайды (Swiper) === */
 .swiper-slide {
-  display: flex !important; /* Swiper управляет слайдами, но заставим их быть flex-контейнерами */
-  align-items: stretch; /* растянуть карточку на всю высоту слайда */
+  display: flex !important;
+  align-items: stretch;
+  padding: 8px;
   box-sizing: border-box;
-  padding: 8px; /* небольшой внутренний отступ между слайдами */
 }
 
-/* === Карточка отзыва — теперь фиксированной высоты (равные высоты) === */
+/* === Карточка отзыва === */
 .reviews-slider__card {
-  width: 100%; /* 100% ширины слайда */
-  flex: 1 1 auto; /* занимает всё доступное пространство внутри .swiper-slide */
-  height: var(--card-height); /* фиксированная высота (меняется на брейкпойнтах) */
-  box-sizing: border-box;
+  flex: 1;
+  width: 100%;
   background-color: var(--bg-color-card, #fff);
   border-radius: var(--border-radius-base, 16px);
   padding: var(--card-padding);
   box-shadow: var(--shadow-medium, 0 6px 20px rgba(0, 0, 0, 0.1));
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   border: 1px solid #e0e0e0;
-  transition: transform var(--transition-speed, 0.3s ease),
-    box-shadow var(--transition-speed, 0.3s ease), border-color var(--transition-speed, 0.3s ease);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
   color: var(--text-color-dark, #333);
-  overflow: hidden; /* прятать лишнее содержимое */
+  overflow: hidden;
 }
 
-/* hover / focus */
 .reviews-slider__card:hover,
 .reviews-slider__card:focus-within {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
   border-color: var(--primary-color, #007bff);
 }
 
-/* Кнопка клика — анимация (класс добавляется JS) */
+/* Анимация клика */
 .activeClick {
   transform: scale(1.03);
   box-shadow: 0 12px 30px rgba(0, 123, 255, 0.18);
 }
 
-/* === Шапка карточки: фиксируем, чтобы тело могло расти/усекаться === */
+/* === Шапка карточки === */
 .reviews-slider__header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  flex: 0 0 auto; /* не растягивать шапку */
-}
-
-.reviews-slider__avatar {
-  width: var(--avatar-size);
-  height: var(--avatar-size);
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--primary-color, #007bff);
-  flex: 0 0 auto;
+  gap: 12px;
 }
 
 .reviews-slider__name {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  color: var(--text-color-dark, #222);
+  color: var(--text-color-dark, #111);
+}
+
+.reviews-slider__link {
+  color: var(--title-accent, #007bff); /* используем переменную, если есть */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.reviews-slider__link:hover,
+.reviews-slider__link:focus {
+  color: var(--title-accent-hover, #0056b3);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.reviews-slider__link:active {
+  color: var(--title-accent-active, #003f88);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 .reviews-slider__source {
@@ -97,30 +99,28 @@
   display: block;
 }
 
-/* === Рейтинг — фиксированное место === */
+/* === Рейтинг === */
 .reviews-slider__rating {
   color: #f5c518;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  flex: 0 0 auto;
 }
 
-/* === Текст отзыва: занимает оставшееся пространство и усікается через line-clamp === */
+/* === Текст отзыва === */
 .reviews-slider__text {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: var(--text-color-dark, #444);
   line-height: 1.5;
-  flex: 1 1 auto; /* занимает всё оставшееся место */
+  flex: 1;
   overflow: hidden;
 
-  /* многополосное усечение */
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5; /* по умолчанию показываем 5 строк */
+  -webkit-line-clamp: 5;
   word-break: break-word;
 }
 
-/* === Стрелки управления (адаптивные размеры/позиционирование) === */
+/* === Кнопки управления === */
 .swiper-button-prev,
 .swiper-button-next {
   position: absolute;
@@ -136,100 +136,50 @@
   justify-content: center;
   box-shadow: var(--shadow-medium, 0 6px 20px rgba(0, 0, 0, 0.1));
   cursor: pointer;
-  transition: background var(--transition-speed, 0.25s ease),
-    transform var(--transition-speed, 0.25s ease);
+  transition: background 0.25s ease, transform 0.25s ease;
   z-index: 10;
   border: none;
 }
 
-/* смещаем кнопки чуть в стороны, чтобы не закрывать контент */
 .swiper-button-prev {
-  left: -18px;
+  left: clamp(-12px, -1vw, -18px);
 }
-
 .swiper-button-next {
-  right: -18px;
+  right: clamp(-12px, -1vw, -18px);
 }
 
-/* ховер/фокус для кнопок (доступность) */
 .swiper-button-prev:hover,
 .swiper-button-next:hover,
-.swiper-button-prev:focus,
-.swiper-button-next:focus {
+.swiper-button-prev:focus-visible,
+.swiper-button-next:focus-visible {
   background: var(--secondary-color, #0056b3);
-  transform: translateY(-50%) scale(1.02);
+  transform: translateY(-50%) scale(1.05);
   outline: none;
 }
 
-.custom-btn:focus-visible {
-  outline: 3px solid rgba(0, 123, 255, 0.25);
-  border-radius: 50%;
-}
-
-/* === Брейкпоинты — уменьшаем высоту карточек и количество строк текста === */
-@media (max-width: 1024px) {
-  .reviews-slider {
-    --card-height: 280px;
-    --card-padding: 25px;
-    --avatar-size: 48px;
-    --btn-size: 42px;
-  }
-
-  .reviews-slider__text {
-    -webkit-line-clamp: 4;
-  }
-
-  .swiper-button-prev {
-    left: -14px;
-  }
-  .swiper-button-next {
-    right: -14px;
-  }
-}
-
+/* === Адаптивность === */
 @media (max-width: 768px) {
-  .reviews-slider {
-    --card-height: 240px;
-    --card-padding: 20px;
-    --avatar-size: 44px;
-    --btn-size: 38px;
-    padding: 40px 16px;
-  }
-
   .reviews-slider__text {
     -webkit-line-clamp: 3;
   }
 
-  /* на мобильных кнопки лучше внутри контейнера и компактнее */
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: auto;
+    bottom: 8px;
+    transform: none;
+  }
   .swiper-button-prev {
-    left: 6px;
-    top: calc(100% - 18px);
-    transform: translateY(-0%);
+    left: 8px;
   }
   .swiper-button-next {
-    right: 6px;
-    top: calc(100% - 18px);
-    transform: translateY(-0%);
+    right: 8px;
   }
 }
 
 @media (max-width: 480px) {
-  .reviews-slider {
-    --card-height: 200px;
-    --card-padding: 16px;
-    --avatar-size: 40px;
-    --btn-size: 34px;
-    padding: 30px 10px;
-  }
-
   .reviews-slider__text {
     -webkit-line-clamp: 2;
-    font-size: 0.95rem;
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: var(--btn-size);
-    height: var(--btn-size);
+    font-size: 0.9rem;
   }
 }

@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import axios, { type AxiosResponse } from 'axios';
-
+import axios, { type AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 // Стили Swiper
 import 'swiper/css';
 
@@ -27,44 +26,39 @@ type Review = {
 };
 
 const ReviewsSlider: React.FC = () => {
-  // Храним ссылку на объект Swiper, чтобы управлять им (next/prev/stop/start)
   const swiperRef = useRef<SwiperType | null>(null);
 
-  // Состояния: список отзывов, загрузка и ошибка
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Загружаем JSON с отзывами (имитация запроса через axios)
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         // Динамический импорт JSON-файла
         const module = await import('../../data/reviews.json');
 
-        // axios-запрос с кастомным adapter (подставляем данные напрямую из JSON)
-        const response: AxiosResponse<Review[]> = await axios<Review[]>({
+        // axios-запрос с кастомным adapter
+        const response: AxiosResponse<Review[]> = await axios.request<Review[]>({
           method: 'get',
-          url: '', // реальный URL не нужен, так как adapter возвращает данные
-          adapter: async () => {
+          url: '', // фиктивный URL
+          adapter: async (config: InternalAxiosRequestConfig): Promise<AxiosResponse<Review[]>> => {
             return {
-              data: module.default as Review[], // данные из JSON
+              data: module.default as Review[],
               status: 200,
               statusText: 'OK',
               headers: {},
-              config: {},
+              config,
               request: {},
             };
           },
         });
 
-        // Сохраняем отзывы в state
         setReviews(response.data);
       } catch (err) {
         console.error('Ошибка загрузки отзывов:', err);
         setError('Не удалось загрузить отзывы.');
       } finally {
-        // Отключаем индикатор загрузки
         setLoading(false);
       }
     };
@@ -72,19 +66,16 @@ const ReviewsSlider: React.FC = () => {
     fetchReviews();
   }, []);
 
-  // Анимация клика для кастомных кнопок
   const handleClickAnimation = (e: React.MouseEvent<HTMLDivElement>) => {
     const btn = e.currentTarget;
     btn.classList.add(styles.activeClick);
     setTimeout(() => btn.classList.remove(styles.activeClick), 300);
   };
 
-  // Пока идёт загрузка
   if (loading) {
     return <div className={styles['reviews-slider']}>Загрузка отзывов...</div>;
   }
 
-  // Если ошибка
   if (error) {
     return <div className={styles['reviews-slider']}>{error}</div>;
   }
@@ -93,54 +84,55 @@ const ReviewsSlider: React.FC = () => {
     <div className={styles['reviews-slider']}>
       <h2>Reviews Slider</h2>
 
-      {/* Компонент Swiper */}
       <Swiper
-        modules={[Autoplay]} // модуль автопрокрутки
-        spaceBetween={30} // отступ между слайдами
-        slidesPerView={2} // сколько слайдов показывать одновременно
+        modules={[Autoplay]}
+        spaceBetween={30}
+        slidesPerView={2}
         autoplay={{
-          delay: 4000, // задержка автопрокрутки
-          disableOnInteraction: false, // не останавливать при ручном скролле
+          delay: 4000,
+          disableOnInteraction: false,
         }}
-        loop // зацикливание
-        speed={800} // скорость анимации
+        loop
+        speed={800}
         breakpoints={{
-          320: { slidesPerView: 1 }, // мобильный
-          768: { slidesPerView: 2 }, // планшет+
+          320: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
         }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)} // сохраняем ссылку на swiper
-        onMouseEnter={() => swiperRef.current?.autoplay.stop()} // пауза при наведении
-        onMouseLeave={() => swiperRef.current?.autoplay.start()} // продолжение после ухода
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onMouseEnter={() => swiperRef.current?.autoplay.stop()}
+        onMouseLeave={() => swiperRef.current?.autoplay.start()}
       >
-        {/* Перебор отзывов */}
-        {reviews.map(({ id, avatar, name, source, rating, text }) => (
+        {reviews.map(({ id, name, source, rating, text }) => (
           <SwiperSlide key={id}>
             <div className={styles['reviews-slider__card']}>
-              {/* Заголовок карточки (аватар + имя + источник) */}
               <div className={styles['reviews-slider__header']}>
-                <img src={avatar} alt={name} className={styles['reviews-slider__avatar']} />
                 <div>
-                  <h3 className={styles['reviews-slider__name']}>{name}</h3>
-                  <span className={styles['reviews-slider__source']}>{source}</span>
+                  <h3 className={styles['reviews-slider__name']}>
+                    <a
+                      href={source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles['reviews-slider__link']}
+                    >
+                      {name}
+                    </a>
+                  </h3>
                 </div>
               </div>
 
-              {/* Рейтинг (звёздочки) */}
               <div className={styles['reviews-slider__rating']}>{'★'.repeat(rating)}</div>
 
-              {/* Текст отзыва */}
               <p className={styles['reviews-slider__text']}>{text}</p>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Кастомные кнопки управления */}
       <div
         className={`${styles['swiper-button-prev']} ${styles['custom-btn']}`}
         onClick={(e) => {
           handleClickAnimation(e);
-          swiperRef.current?.slidePrev(); // переключение назад
+          swiperRef.current?.slidePrev();
         }}
       >
         <FontAwesomeIcon icon={faChevronLeft} />
@@ -149,7 +141,7 @@ const ReviewsSlider: React.FC = () => {
         className={`${styles['swiper-button-next']} ${styles['custom-btn']}`}
         onClick={(e) => {
           handleClickAnimation(e);
-          swiperRef.current?.slideNext(); // переключение вперёд
+          swiperRef.current?.slideNext();
         }}
       >
         <FontAwesomeIcon icon={faChevronRight} />
