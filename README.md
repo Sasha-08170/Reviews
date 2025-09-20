@@ -6,6 +6,8 @@
 - **Swiper** (`swiper/react`, модули Navigation и Pagination)
 - **CSS-модули с БЭМ-именованием**
 - **JSON-данные** для отзывов
+- 
+<img width="1526" height="601" alt="Screenshot_2025_09_20-2" src="https://github.com/user-attachments/assets/68cddc03-78fc-4050-bb70-f433dc741ad1" />
 
 ## Возможности
 
